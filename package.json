@@ -1,0 +1,28 @@
+{
+  "name": "goit-js-hw-11-color-switch-2022",
+  "version": "1.0.0",
+  "description": "",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "scripts": {
+    "dev": "parcel src/index.html --open chrome",
+    "build": "parcel build src/index.html --public-url /goit-js-hw-11-color-switch-2022/",
+    "deploy": "gh-pages -d dist",
+    "predeploy": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/77Andrey77/goit-js-hw-11-color-switch-2022.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/77Andrey77/goit-js-hw-11-color-switch-2022/issues"
+  },
+  "homepage": "https://77Andrey77.github.io/goit-js-hw-11-color-switch-2022",
+  "dependencies": {
+    "bootstrap.native": "^4.2.0",
+    "gh-pages": "^4.0.0",
+    "parcel": "^2.7.0",
+    "parcel-plugin-nuke-dist": "^1.0.1"
+  }
+}
