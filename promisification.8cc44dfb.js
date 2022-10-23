@@ -1,0 +1,2 @@
+!function(){const t=t=>new Promise(((n,a)=>{const o=(e=200,i=500,Math.floor(Math.random()*(i-e+1)+e));var e,i;setTimeout((()=>{Math.random()>.3?n({id:t.id,time:o}):a(t.id)}),o)})),n=({id:t,time:n})=>{console.log(`Transaction ${t} processed in ${n}ms`)},a=t=>{console.warn(`Error processing transaction ${t}. Please try again later.`)};t({id:70,amount:150}).then(n).catch(a),t({id:71,amount:230}).then(n).catch(a),t({id:72,amount:75}).then(n).catch(a),t({id:73,amount:100}).then(n).catch(a)}();
+//# sourceMappingURL=promisification.8cc44dfb.js.map

@@ -1,0 +1,2 @@
+const t=t=>new Promise(((a,n)=>{const o=(e=200,i=500,Math.floor(Math.random()*(i-e+1)+e));var e,i;setTimeout((()=>{Math.random()>.3?a({id:t.id,time:o}):n(t.id)}),o)})),a=({id:t,time:a})=>{console.log(`Transaction ${t} processed in ${a}ms`)},n=t=>{console.warn(`Error processing transaction ${t}. Please try again later.`)};t({id:70,amount:150}).then(a).catch(n),t({id:71,amount:230}).then(a).catch(n),t({id:72,amount:75}).then(a).catch(n),t({id:73,amount:100}).then(a).catch(n);
+//# sourceMappingURL=promisification.696d72f4.js.map
