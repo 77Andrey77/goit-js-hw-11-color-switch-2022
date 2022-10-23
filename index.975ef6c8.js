@@ -532,42 +532,69 @@ function hmrAcceptRun(bundle, id) {
 }
 
 },{}],"8lqZg":[function(require,module,exports) {
-const colors = [
-    "#FFFFFF",
-    "#2196F3",
-    "#4CAF50",
-    "#FF9800",
-    "#009688",
-    "#795548", 
-];
-const randomIntegerFromInterval = (min, max)=>{
-    return Math.floor(Math.random() * (max - min + 1) + min);
-};
+// new CountdownTimer({
+//   selector: '#timer-1',
+//   targetDate: new Date('Jul 17, 2019'),
+// });
 const refs = {
-    body: document.querySelector("body"),
-    startBtn: document.querySelector('button[data-action="start"]'),
-    stopBtn: document.querySelector('button[data-action="stop"]')
+    daysEl: document.querySelector('[data-value= "days"]'),
+    hoursEl: document.querySelector('[data-value= "hours"]'),
+    minsEl: document.querySelector('[data-value= "mins"]'),
+    secsEl: document.querySelector('[data-value= "secs"]')
 };
-let timerId = null;
-let isActiv = false;
-refs.startBtn.addEventListener("click", onClickStart);
-refs.stopBtn.addEventListener("click", onClickStop);
-function onClickStart() {
-    if (isActiv) return;
-    timerId = setInterval(()=>{
-        const color = colors[randomIntegerFromInterval(0, 5)];
-        isActiv = true;
-        refs.startBtn.setAttribute("disabled", true);
-        refs.body.style.backgroundColor = color;
-    // console.log('старт');
-    }, 1000);
+class Timer {
+    constructor({ selector , targetDate  }){
+        this.selector = selector;
+        this.targetDate = targetDate;
+    }
+    start() {
+        //  console.log(this.targetDate);
+        //  this.getTime();
+        //  console.log(this.getTime());
+        //  this.getTimeComponents(this.getTime());
+        //  console.log(this.getTimeComponents(this.getTime()));
+        updateClockfase(this.getTimeComponents(this.getTime()));
+        setInterval(()=>{
+            updateClockfase(this.getTimeComponents(this.getTime()));
+        }, 1000);
+    }
+    //получение сколько времени осталось
+    getTime() {
+        const currentTime = Date.now();
+        const deltaTime = this.targetDate - currentTime;
+        return deltaTime;
+    }
+    //правильное отображение времени ,добавление 0
+    pad(value) {
+        return String(value).padStart(2, "0");
+    }
+    // формулы получения дней часов мин сек
+    getTimeComponents(time) {
+        const days = this.pad(Math.floor(time / 86400000));
+        const hours = this.pad(Math.floor(time % 86400000 / 3600000));
+        const mins = this.pad(Math.floor(time % 3600000 / 60000));
+        const secs = this.pad(Math.floor(time % 60000 / 1000));
+        return {
+            days,
+            hours,
+            mins,
+            secs
+        };
+    }
 }
-function onClickStop() {
-    clearInterval(timerId);
-    // console.log('стоп');
-    isActiv = false;
-    refs.startBtn.removeAttribute("disabled");
+//визуальное отображение
+function updateClockfase({ days , hours , mins , secs  }) {
+    refs.daysEl.textContent = `${days}`;
+    refs.hoursEl.textContent = `${hours}`;
+    refs.minsEl.textContent = `${mins}`;
+    refs.secsEl.textContent = `${secs}`;
 }
+const timer1 = new Timer({
+    selector: "#timer-1",
+    targetDate: new Date("Nov 1, 2022")
+});
+// document.addEventListener("DOMContentLoaded", timer1.start());
+timer1.start();
 
 },{}]},["ShInH","8lqZg"], "8lqZg", "parcelRequirec28d")
 
